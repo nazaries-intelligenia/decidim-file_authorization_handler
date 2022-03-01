@@ -21,7 +21,7 @@ describe Decidim::FileAuthorizationHandler::Admin::Permissions do
   end
 
   before do
-    organization.update_attributes!(available_authorizations: ["file_authorization_handler"])
+    organization.update!(available_authorizations: ["file_authorization_handler"])
   end
 
   context "when action is allowed" do
