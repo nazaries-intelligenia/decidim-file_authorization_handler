@@ -12,9 +12,9 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
-# This is required to generate the testing dummy_app (see README)
-gem "decidim", require: true
-
-group :test do
+group :development, :test do
   gem "bootsnap", require: false
+  gem "decidim", require: true
+  gem "letter_opener_web"
+  gem "listen"
 end
