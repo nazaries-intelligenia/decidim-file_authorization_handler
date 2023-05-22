@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v0.26.2.6
+ - Add missing translations about first login.
+
 ## v0.26.2.5
  - FEATURE: Allow extra random columns in CSV and persist them in an `extras` column of type `jsonb` but as an array.
  - Upgrade to use Ruby 2.7.7, but be still compatible with 2.7.5
