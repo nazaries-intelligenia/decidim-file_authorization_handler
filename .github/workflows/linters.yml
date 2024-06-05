@@ -1,15 +1,15 @@
 name: "[CI] Lint / Lint code"
-
 on:
   push:
     branches:
-      - master
+      - main
       - release/*
       - "*-stable"
   pull_request:
 
 env:
   RUBY_VERSION: 3.1.3
+  NODE_VERSION: 18.17.1
 
 jobs:
   test-report:
@@ -33,6 +33,10 @@ jobs:
             ${{ runner.OS }}-rubydeps-${{ env.cache-name }}-
             ${{ runner.OS }}-rubydeps-
             ${{ runner.OS }}-
+        
+      - uses: actions/setup-node@master
+        with:
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Set bundle local config configvendor/bundle path
         run: bundle config set --local path 'vendor/bundle'
@@ -44,5 +48,12 @@ jobs:
           max_attempts: 3
           command: bundle install --jobs 4 --retry 3
 
-      - name: Rubocop
-        run: bundle exec rubocop -P
+      - run: bundle exec rubocop -P
+        name: Lint Ruby files
+
+      - run: bundle exec mdl *.md
+        name: Lint Markdown files
+
+      - run: bundle exec erblint app/**/*.erb
+        name: Lint ERB files 
+
