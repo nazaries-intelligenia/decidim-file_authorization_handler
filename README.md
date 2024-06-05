@@ -125,7 +125,7 @@ bundle exec rspec spec
 
 If you find the following error after you have installed the engine:
 
-```
+```bash
 undefined method 'decidim_file_authorization_handler_admin_path'
 for module#<Module:0x00007fa2aa4e2a10>
 ```
