@@ -13,7 +13,7 @@ module Decidim
         Decidim.menu :admin_menu do |menu|
           menu.item I18n.t("decidim.file_authorization_handler.admin.menu.census"),
                     decidim_file_authorization_handler_admin.censuses_path,
-                    icon_name: "spreadsheet",
+                    icon_name: "file-text-line",
                     position: 7,
                     active: :inclusive
         end
