@@ -104,7 +104,7 @@ mount Decidim::FileAuthorizationHandler::AdminEngine => '/admin'
 
 ## Run tests
 
-Node 16.9.1 is required!
+Node 18.17 is required!
 
 Create a dummy app in your application (if not present):
 
