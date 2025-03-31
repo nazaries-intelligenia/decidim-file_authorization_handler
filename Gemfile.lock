@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    decidim-file_authorization_handler (0.29.0.0)
-      decidim (~> 0.29.0)
-      decidim-admin (~> 0.29.0)
+    decidim-file_authorization_handler (0.29.2.0)
+      decidim (~> 0.29.2)
+      decidim-admin (~> 0.29.2)
       rails (>= 5.2)
 
 GEM

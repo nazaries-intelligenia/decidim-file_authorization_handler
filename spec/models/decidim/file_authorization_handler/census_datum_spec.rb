@@ -4,19 +4,18 @@ require "spec_helper"
 RSpec.describe Decidim::FileAuthorizationHandler::CensusDatum do
   let(:organization) { create(:organization) }
 
-  # rubocop: disable Lint/ConstantDefinitionInBlock
   CensusDatum = Decidim::FileAuthorizationHandler::CensusDatum
   # rubocop: enable Lint/ConstantDefinitionInBlock
 
   describe "get census for a given identity document" do
     it "returns the last inserted when duplicates" do
       create(:census_datum, id_document: encode_id_document("AAA"))
-      last = create(:census_datum, id_document: encode_id_document("AAA"), organization: organization)
+      last = create(:census_datum, id_document: encode_id_document("AAA"), organization:)
       expect(CensusDatum.search_id_document(organization, "AAA")).to eq(last)
     end
 
     it "normalizes the document" do
-      census = create(:census_datum, id_document: encode_id_document("AAA"), organization: organization)
+      census = create(:census_datum, id_document: encode_id_document("AAA"), organization:)
       expect(CensusDatum.search_id_document(organization, "a-a-a")).to eq(census)
     end
   end
@@ -44,7 +43,7 @@ RSpec.describe Decidim::FileAuthorizationHandler::CensusDatum do
         # rubocop: disable Rails/SkipsModelValidations
         CensusDatum.insert_all(organization, [
                                  ["1111A", "2001/12/1", "001", "1234"],
-                                 ["3333C", "1990/12/3", "ABCD", "01-12/33"],
+                                 ["3333C", "1990/12/3", "ABCD", "01-12/33"]
                                ], %w(POSTAL_CODE DISTRICT))
         # rubocop: enable Rails/SkipsModelValidations
 
