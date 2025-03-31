@@ -801,8 +801,8 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  decidim (~> 0.29.0)
-  decidim-dev (~> 0.29.0)
+  decidim (= 0.29.2)
+  decidim-dev (= 0.29.2)
   decidim-file_authorization_handler!
   faker (~> 3.2)
   letter_opener_web

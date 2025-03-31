@@ -7,7 +7,7 @@ describe Decidim::FileAuthorizationHandler::Admin::Permissions do
 
   let(:dummy_component) { create(:dummy_component) }
   let(:organization) { dummy_component.organization }
-  let(:user) { create(:user, organization:) }
+  let(:user) { create(:user, organization: organization) }
   let(:context) do
     {
       current_component: dummy_component,
@@ -16,7 +16,7 @@ describe Decidim::FileAuthorizationHandler::Admin::Permissions do
   let(:scope) { :admin }
   let(:auth_subject) { Decidim::FileAuthorizationHandler::CensusDatum }
   let(:action) do
-    { scope:, action: action_name, subject: auth_subject }
+    { scope: scope, action: action_name, subject: auth_subject }
   end
   let(:permission_action) { Decidim::PermissionAction.new(**action) }
 

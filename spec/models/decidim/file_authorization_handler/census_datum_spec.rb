@@ -11,12 +11,12 @@ RSpec.describe Decidim::FileAuthorizationHandler::CensusDatum do
   describe "get census for a given identity document" do
     it "returns the last inserted when duplicates" do
       create(:census_datum, id_document: encode_id_document("AAA"))
-      last = create(:census_datum, id_document: encode_id_document("AAA"), organization:)
+      last = create(:census_datum, id_document: encode_id_document("AAA"), organization: organization)
       expect(CensusDatum.search_id_document(organization, "AAA")).to eq(last)
     end
 
     it "normalizes the document" do
-      census = create(:census_datum, id_document: encode_id_document("AAA"), organization:)
+      census = create(:census_datum, id_document: encode_id_document("AAA"), organization: organization)
       expect(CensusDatum.search_id_document(organization, "a-a-a")).to eq(census)
     end
   end

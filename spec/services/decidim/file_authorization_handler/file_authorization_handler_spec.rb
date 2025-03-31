@@ -3,12 +3,12 @@
 require "spec_helper"
 RSpec.describe FileAuthorizationHandler do
   let(:organization) { create(:organization) }
-  let(:user) { create(:user, organization:) }
+  let(:user) { create(:user, organization: organization) }
   let(:dni) { "1234A" }
   let(:encoded_dni) { encode_id_document(dni) }
   let(:date) { Date.strptime("1990/11/21", "%Y/%m/%d") }
   let(:handler) do
-    described_class.new(user:, id_document: dni, birthdate: date)
+    described_class.new(user: user, id_document: dni, birthdate: date)
                    .with_context(current_organization: organization)
   end
   let!(:unique_id) do
@@ -18,7 +18,7 @@ RSpec.describe FileAuthorizationHandler do
   it "accepts either id_document or document_number in the constructor" do
     expect(handler.id_document).to eq(dni)
 
-    handler = described_class.new(user:, document_number: dni, birthdate: date)
+    handler = described_class.new(user: user, document_number: dni, birthdate: date)
                              .with_context(current_organization: organization)
     expect(handler.id_document).to eq(dni)
   end
@@ -27,7 +27,7 @@ RSpec.describe FileAuthorizationHandler do
     let(:census_datum) do
       create(:census_datum, id_document: encoded_dni,
                             birthdate: date,
-                            organization:)
+                            organization: organization)
     end
 
     it "validates against database" do
@@ -39,7 +39,7 @@ RSpec.describe FileAuthorizationHandler do
     it "normalizes the id document" do
       census_datum
       normalizer =
-        described_class.new(user:, id_document: "12-34-a", birthdate: date)
+        described_class.new(user: user, id_document: "12-34-a", birthdate: date)
                        .with_context(current_organization: organization)
       expect(normalizer.valid?).to be true
     end
@@ -56,7 +56,7 @@ RSpec.describe FileAuthorizationHandler do
 
     it "works when no current_organization context is provided (but the user is)" do
       census_datum
-      contextless_handler = described_class.new(user:,
+      contextless_handler = described_class.new(user: user,
                                                 id_document: dni,
                                                 birthdate: date)
       expect(contextless_handler.valid?).to be true
@@ -68,7 +68,7 @@ RSpec.describe FileAuthorizationHandler do
     let(:census_datum) do
       create(:census_datum, :with_extras, id_document: encoded_dni,
                                           birthdate: date,
-                                          organization:)
+                                          organization: organization)
     end
 
     it "adds extras as metadata" do
