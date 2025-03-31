@@ -12,7 +12,7 @@ env:
   NODE_VERSION: 18.17.1
 
 jobs:
-  test-report:
+  lint-report:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,16 +24,6 @@ jobs:
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
 
-      - name: Recover Ruby dependency cache
-        uses: actions/cache@v2
-        with:
-          path: ./vendor/bundle
-          key: ${{ runner.OS }}-rubydeps-${{ hashFiles('Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-rubydeps-${{ env.cache-name }}-
-            ${{ runner.OS }}-rubydeps-
-            ${{ runner.OS }}-
-        
       - uses: actions/setup-node@master
         with:
           node-version: ${{ env.NODE_VERSION }}
