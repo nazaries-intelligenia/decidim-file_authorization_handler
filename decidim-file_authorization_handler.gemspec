@@ -18,10 +18,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md"]
 
-  # rubocop: disable Gemspec/RequiredRubyVersion
   s.required_ruby_version = "> 3.0"
-  # rubocop: enable Gemspec/RequiredRubyVersion
-
   # rubocop: disable Lint/ConstantDefinitionInBlock
   DECIDIM_VERSION = "~> #{Decidim::FileAuthorizationHandler::DECIDIM_VERSION}".freeze
   # rubocop: enable Lint/ConstantDefinitionInBlock
@@ -30,9 +27,5 @@ Gem::Specification.new do |s|
   s.add_dependency "decidim-admin", DECIDIM_VERSION
   s.add_dependency "rails", ">= 5.2"
 
-  s.add_development_dependency "decidim-dev", DECIDIM_VERSION
-  s.add_development_dependency "faker", "~> 3.2"
-  s.add_development_dependency "letter_opener_web", "~> 1.3.3"
-  s.add_development_dependency "listen", "~> 3.1"
   s.metadata["rubygems_mfa_required"] = "true"
 end

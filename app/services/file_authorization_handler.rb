@@ -16,7 +16,7 @@ class FileAuthorizationHandler < Decidim::AuthorizationHandler
   # Customized constructor to support decidim-initiatives.
   def initialize(params)
     params[:id_document] = params.delete(:document_number) unless params.has_key?(:id_document)
-    super(params)
+    super
   end
 
   def metadata
@@ -43,7 +43,7 @@ class FileAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def authorized?
-    return true if census_for_user
+    true if census_for_user
   end
 
   def unique_id
